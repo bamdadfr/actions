@@ -1,0 +1,31 @@
+name: yarn-lint (push)
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  yarn-lint:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@master
+
+      - uses: actions/setup-node@master
+        with:
+          node-version: '12'
+
+      - run: yarn
+
+      - run: yarn lint
+
+      - run: |
+          git config --global user.email "asfalte@bamdadsabbagh.com"
+          git config --global user.name "asfalte"
+
+      - run: |
+          git add .
+          git diff-index --quiet HEAD || git commit -m "fix: asfalte: auto yarn-lint"
+      
+      - run: git push
