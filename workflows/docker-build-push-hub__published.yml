@@ -10,8 +10,6 @@ jobs:
     runs-on: ubuntu-latest 
     steps:
 
-      - run: echo ::set-env name=IMAGE::$(echo "${{ github.repository }}" | awk -F / '{print $2}' | sed -e "s/:refs//")
-
       - uses: actions/checkout@master
 
       - uses: docker/build-push-action@master
