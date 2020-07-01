@@ -1,0 +1,40 @@
+name: docker-base-image-check-hub (hourly)
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@master
+
+      - run: echo ::set-env name=BASE_IMAGE::$(cat Dockerfile | awk '{ if ($1=="FROM") print $2 }' | tail -n 1)
+
+      - run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
+
+      - run: |
+          wget https://raw.githubusercontent.com/bamdadsabbagh/docker-base-image-check/master/src/check.sh
+          chmod +x check.sh
+
+      - run: |
+          if ./check.sh ${{ env.BASE_IMAGE }} ${{ secrets.DOCKER_REPO }}:latest; then
+            echo ::set-env name=IS_UP_TO_DATE::'true'
+          else
+            echo ::set-env name=IS_UP_TO_DATE::'false'
+          fi
+
+      - if: env.IS_UP_TO_DATE != 'true'
+        run: |
+          git config --global user.email "asfalte@bamdadsabbagh.com"
+          git config --global user.name "asfalte"
+          git commit --allow-empty -m "fix: asfalte: auto docker-base-image-check"
+          git push
+
+      - if: env.IS_UP_TO_DATE != 'true'
+        uses: peter-evans/repository-dispatch@master
+        with:
+          token: ${{ secrets.PAT }}
+          event-type: docker-base-image-check
