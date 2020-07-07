@@ -1,0 +1,37 @@
+name: lftp-remote-to-host__mondays
+
+on:
+  schedule:
+    - cron: '0 0 * * 1' # every monday
+  push:
+    branches:
+      - master
+
+# secrets needed
+# DATA_PATH: local path
+# FTP_HOST, FTP_USER, FTP_PASS
+
+jobs:
+  lftp:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - run: |
+          sudo apt-get install -y \
+            lftp
+      
+      - run: |
+          cd ${{ env.DATA_PATH }} \
+          && lftp -e "cd ${{ env.DATA_PATH }} && mirror -nP . . && exit" -u ${{ secrets.FTP_USER }},${{ secrets.FTP_PASS }} ftp://${{ secrets.FTP_HOST }}
+
+      - run: |
+          git config --global user.email "asfalte@bamdadsabbagh.com"
+          git config --global user.name "asfalte"
+
+      - run: |
+          git add .
+          git diff-index --quiet HEAD || git commit -m "fix: auto: lftp mirror traceip"
+      
+      - run: git push
