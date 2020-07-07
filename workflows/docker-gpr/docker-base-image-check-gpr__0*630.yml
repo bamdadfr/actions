@@ -1,4 +1,4 @@
-name: docker-base-image-check (30 */6 * * *)
+name: docker-base-image-check-gpr (30 */6 * * *)
 
 on:
   schedule:
