@@ -3,9 +3,6 @@ name: lftp-remote-to-host__mondays
 on:
   schedule:
     - cron: '0 0 * * 1' # every monday
-  push:
-    branches:
-      - master
 
 # secrets needed
 # DATA_PATH: local path
@@ -32,6 +29,6 @@ jobs:
 
       - run: |
           git add .
-          git diff-index --quiet HEAD || git commit -m "fix: auto: lftp mirror traceip"
+          git diff-index --quiet HEAD || git commit -m "🖋 fix: asfalte: lftp-remote-to-host__mondays"
       
       - run: git push
