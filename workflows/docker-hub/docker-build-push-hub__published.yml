@@ -1,4 +1,4 @@
-name: docker-build-push-hub (published)
+name: docker-build-push-hub__published
 
 on:
   release:
