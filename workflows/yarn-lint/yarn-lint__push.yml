@@ -1,11 +1,12 @@
-name: yarn-upgrade (0 * * * *)
+name: yarn-lint__push
 
 on:
-  schedule:
-    - cron: '0 * * * *'
+  push:
+    branches:
+      - master
 
 jobs:
-  yarn-upgrade:
+  yarn-lint:
     runs-on: ubuntu-latest
     steps:
 
@@ -15,7 +16,9 @@ jobs:
         with:
           node-version: '12'
 
-      - run: yarn upgrade --latest
+      - run: yarn
+
+      - run: yarn lint
 
       - run: |
           git config --global user.email "asfalte@bamdadsabbagh.com"
@@ -23,7 +26,6 @@ jobs:
 
       - run: |
           git add .
-          git diff-index --quiet HEAD || git commit -m "fix: asfalte: auto yarn-upgrade"
-
+          git diff-index --quiet HEAD || git commit -m "🔧 fix: asfalte: yarn-lint__push"
+      
       - run: git push
-
