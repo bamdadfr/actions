@@ -1,8 +1,8 @@
-name: yarn-upgrade (hourly)
+name: yarn-upgrade (30 */6 * * *)
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '30 */6 * * *'
 
 jobs:
   yarn-upgrade:
