@@ -26,6 +26,6 @@ jobs:
 
       - run: |
           git add .
-          git diff-index --quiet HEAD || git commit -m "🔧 fix: asfalte: yarn-lint__push"
+          git diff-index --quiet HEAD || git commit -m "fix: asfalte: 🔧 yarn-lint__push"
       
       - run: git push
