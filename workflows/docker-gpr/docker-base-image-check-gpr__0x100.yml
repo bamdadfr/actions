@@ -11,7 +11,7 @@ jobs:
 
       - uses: actions/checkout@master
 
-      - run: echo "BASE_IMAGE$(cat Dockerfile | awk '{ if ($1=="FROM") print $2 }' | tail -n 1)" >> $GITHUB_ENV
+      - run: echo "BASE_IMAGE=$(cat Dockerfile | awk '{ if ($1=="FROM") print $2 }' | tail -n 1)" >> $GITHUB_ENV
       - run: echo "IMAGE=$(echo "${{ github.repository }}" | awk -F / '{print $2}' | sed -e "s/:refs//")" >> $GITHUB_ENV
 
       - run: docker login -u ${{ github.repository_owner }} -p ${{ github.token }} docker.pkg.github.com
