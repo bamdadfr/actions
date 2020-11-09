@@ -1,3 +1,3 @@
-# @bamdadsabbagh/github-actions
+# [Github-Actions Collection](https://github.com/bamdadsabbagh/github-actions/tree/master/workflows)
 
-My own collection of github actions and workflows.
+my static collection of github actions and workflows
