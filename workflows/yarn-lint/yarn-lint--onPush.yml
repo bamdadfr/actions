@@ -1,11 +1,12 @@
-name: yarn-upgrade__0x630
+name: yarn-lint--onPush
 
 on:
-  schedule:
-    - cron: '30 */6 * * *'
+  push:
+    branches:
+      - master
 
 jobs:
-  yarn-upgrade:
+  yarn-lint--onPush:
     runs-on: ubuntu-latest
     steps:
 
@@ -15,7 +16,9 @@ jobs:
         with:
           node-version: '12'
 
-      - run: yarn upgrade
+      - run: yarn
+
+      - run: yarn lint
 
       - run: |
           git config --global user.email "asfalte@bamdadsabbagh.com"
@@ -23,7 +26,6 @@ jobs:
 
       - run: |
           git add .
-          git diff-index --quiet HEAD || git commit -m "fix: asfalte: ⚙️ yarn-upgrade__0x630"
-
+          git diff-index --quiet HEAD || git commit -m "fix: asfalte: 🔧 yarn-lint--onPush"
+      
       - run: git push
-

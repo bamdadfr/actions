@@ -1,15 +1,15 @@
-name: semantic-release-with-build__0430
+name: semantic-release-yarn--0430
 
 on:
   schedule:
-    - cron: '30 4 * * *'
+    - cron: '30 4 * * *' # at 04H30
   repository_dispatch:
     types:
       - docker-base-image-check
       - git-commit-force-release
 
 jobs:
-  semantic-release:
+  semantic-release-yarn--0430:
     runs-on: ubuntu-latest
     steps:
 
@@ -20,8 +20,6 @@ jobs:
           node-version: '12'
 
       - run: yarn
-
-      - run: yarn build
 
       - run: |
           npm install -g \
@@ -41,6 +39,3 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           FIREFOX_API_KEY: ${{ secrets.FIREFOX_API_KEY }}
           FIREFOX_SECRET_KEY: ${{ secrets.FIREFOX_SECRET_KEY }}
-          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
-          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
-          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}

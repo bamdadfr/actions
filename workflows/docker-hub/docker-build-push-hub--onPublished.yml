@@ -1,4 +1,4 @@
-name: docker-build-push-hub__published
+name: docker-build-push-hub--onPublished
 
 on:
   release:
@@ -6,7 +6,7 @@ on:
       - published
 
 jobs:
-  docker-build-push-hub:
+  docker-build-push-hub--onPublished:
     runs-on: ubuntu-latest 
     steps:
 

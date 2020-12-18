@@ -1,11 +1,11 @@
-name: docker-base-image-check-hub__0x630
+name: docker-base-image-check-hub--0x630
 
 on:
   schedule:
-    - cron: '30 */6 * * *'
+    - cron: '30 */6 * * *' # every six hours and a half
 
 jobs:
-  check:
+  docker-base-image-check-hub--0x630:
     runs-on: ubuntu-latest
     steps:
 
@@ -30,7 +30,7 @@ jobs:
         run: |
           git config --global user.email "asfalte@bamdadsabbagh.com"
           git config --global user.name "asfalte"
-          git commit --allow-empty -m "fix: asfalte: 🐳 docker-base-image-check-hub__0x630"
+          git commit --allow-empty -m "fix: asfalte: 🐳 docker-base-image-check-hub--0x630"
           git push
 
       - if: env.IS_UP_TO_DATE != 'true'

@@ -1,15 +1,16 @@
-name: semantic-release__0430
+name: semantic-release-yarn--onPush
 
 on:
-  schedule:
-    - cron: '30 4 * * *'
+  push:
+    branches:
+      - master
   repository_dispatch:
     types:
       - docker-base-image-check
       - git-commit-force-release
 
 jobs:
-  semantic-release:
+  semantic-release-yarn--onPush:
     runs-on: ubuntu-latest
     steps:
 
