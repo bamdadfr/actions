@@ -1,4 +1,4 @@
-name: docker-build-push-gpr--onPublished
+name: docker-gpr-build-push-v1--onPublished
 
 on:
   release:
@@ -6,15 +6,15 @@ on:
       - published
 
 jobs:
-  docker-build-push-gpr--onPublished:
+  docker-gpr-build-push-v1--onPublished:
     runs-on: ubuntu-latest 
     steps:
 
-      - run: echo ::set-env name=IMAGE::$(echo "${{ github.repository }}" | awk -F / '{print $2}' | sed -e "s/:refs//")
+      - run: echo "IMAGE=$(echo "${{ github.repository }}" | awk -F / '{print $2}' | sed -e "s/:refs//")" >> $GITHUB_ENV
 
       - uses: actions/checkout@master
 
-      - uses: docker/build-push-action@master
+      - uses: docker/build-push-action@v1
         with:
           registry: docker.pkg.github.com
           username: ${{ github.repository_owner }}

@@ -1,4 +1,4 @@
-name: semantic-release-yarn-build--0430
+name: semantic-release-yarn-with-build--0430
 
 on:
   schedule:
@@ -9,7 +9,7 @@ on:
       - git-commit-force-release
 
 jobs:
-  semantic-release-yarn-build--0430:
+  semantic-release-yarn-with-build--0430:
     runs-on: ubuntu-latest
     steps:
 
