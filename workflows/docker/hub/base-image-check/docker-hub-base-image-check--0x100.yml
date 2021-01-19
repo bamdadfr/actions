@@ -11,7 +11,7 @@ jobs:
 
       - uses: actions/checkout@master
 
-      - run: echo ::set-env name=BASE_IMAGE::$(cat Dockerfile | awk '{ if ($1=="FROM") print $2 }' | tail -n 1)
+      - run: echo "BASE_IMAGE=$(cat Dockerfile | awk '{ if ($1=="FROM") print $2 }' | tail -n 1)" >> $GITHUB_ENV
 
       - run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
 
@@ -21,19 +21,19 @@ jobs:
 
       - run: |
           if ./check.sh ${{ env.BASE_IMAGE }} ${{ secrets.DOCKER_REPO }}:latest; then
-            echo ::set-env name=IS_UP_TO_DATE::'true'
+            echo "IS_OUT_OF_DATE=false" >> $GITHUB_ENV
           else
-            echo ::set-env name=IS_UP_TO_DATE::'false'
+            echo "IS_OUT_OF_DATE=true" >> $GITHUB_ENV
           fi
 
-      - if: env.IS_UP_TO_DATE != 'true'
+      - if: ${{ env.IS_OUT_OF_DATE == true }}
         run: |
           git config --global user.email "asfalte@bamdadsabbagh.com"
           git config --global user.name "asfalte"
           git commit --allow-empty -m "fix: asfalte: 🐳 docker-hub-base-image-check--0x100"
           git push
 
-      - if: env.IS_UP_TO_DATE != 'true'
+      - if: ${{ env.IS_OUT_OF_DATE == true }}
         uses: peter-evans/repository-dispatch@master
         with:
           token: ${{ secrets.PAT }}
