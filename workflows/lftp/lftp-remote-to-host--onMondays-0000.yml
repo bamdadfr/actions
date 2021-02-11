@@ -1,4 +1,4 @@
-name: lftp-remote-to-host--onMondays
+name: lftp-remote-to-host--onMondays-0000
 
 on:
   schedule:
@@ -9,7 +9,7 @@ on:
 # FTP_HOST, FTP_USER, FTP_PASS
 
 jobs:
-  lftp-remote-to-host--onMondays:
+  lftp-remote-to-host--onMondays-0000:
     runs-on: ubuntu-latest
     steps:
 
@@ -29,6 +29,6 @@ jobs:
 
       - run: |
           git add .
-          git diff-index --quiet HEAD || git commit -m "fix: asfalte: 🖋 lftp-remote-to-host--onMondays"
+          git diff-index --quiet HEAD || git commit -m "fix: asfalte: 🖋 lftp-remote-to-host--onMondays-0000"
       
       - run: git push
