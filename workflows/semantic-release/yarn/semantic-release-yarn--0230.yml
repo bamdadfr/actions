@@ -2,7 +2,7 @@ name: semantic-release-yarn--0230
 
 on:
   schedule:
-    - cron: '30 2 * * *' # at 02H30
+    - cron: '30 2 * * *' # at 0230
   repository_dispatch:
     types:
       - docker-base-image-check

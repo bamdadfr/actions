@@ -2,7 +2,7 @@ name: lftp-remote-to-host--onMondays-0000
 
 on:
   schedule:
-    - cron: '0 0 * * 1' # every monday
+    - cron: '0 0 * * 1' # every monday at 0000
 
 # secrets needed
 # DATA_PATH: local path
