@@ -1,0 +1,50 @@
+name: lftp-mirror--onMondays-1030
+
+on:
+  schedule:
+    - cron: '30 10 * * 1' # every monday at 1030
+  release:
+    types:
+      - published
+
+# secrets needed
+# FTP_HOST, FTP_USER, FTP_PASS
+
+jobs:
+  lftp-mirror--onMondays-1030:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@master
+
+      - run: echo "PATH_LOCAL='./src'" >> $GITHUB_ENV
+      - run: echo "PATH_REMOTE='.'" >> $GITHUB_ENV
+
+      - run: |
+          sudo apt-get install -y \
+            lftp
+      
+      - run: |
+          lftp ${{ secrets.FTP_HOST }} \
+            -u ${{ secrets.FTP_USER }},${{ secrets.FTP_PASS }} \
+            -e "set ftp:ssl-force true;
+                set ssl:verify-certificate false;
+                mirror \
+                  --delete \
+                  --reverse \
+                  --continue \
+                  --dereference \
+                  -x ^\.git/$ \
+                  -x ^\.ftpquota$ \
+                  ${{ env.PATH_LOCAL }} ${{ env.PATH_REMOTE }};
+                quit"
+                
+      - run: |
+          git config --global user.email "asfalte@bamdadsabbagh.com"
+          git config --global user.name "asfalte"
+
+      - run: |
+          git add .
+          git diff-index --quiet HEAD || git commit -m "chore: asfalte: 🖋 lftp-mirror--onMondays-1030"
+      
+      - run: git push
