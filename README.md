@@ -1,7 +1,7 @@
 # <img width=25 src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"> Github Actions Collection
 
 <p align="center">
-    <a href="https://github.com/bamdadsabbagh/github-actions">
+    <a href="https://github.com/bamdadsabbagh/actions">
         <img width=125 src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="logo">
     </a>
 </p>
@@ -11,10 +11,10 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/bamdadsabbagh/github-actions">
-        <img src="https://img.shields.io/github/stars/bamdadsabbagh/github-actions?label=git" alt="git">
+    <a href="https://github.com/bamdadsabbagh/actions">
+        <img src="https://img.shields.io/github/stars/bamdadsabbagh/actions?label=git" alt="git">
     </a>
-    <img src="https://img.shields.io/github/license/bamdadsabbagh/github-actions" alt="license">
+    <img src="https://img.shields.io/github/license/bamdadsabbagh/actions" alt="license">
 </p>
 
 <p align="center">
