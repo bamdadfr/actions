@@ -1,4 +1,4 @@
-name: lftp-mirror--onMondays-1030
+name: lftp-mirror-upload--onMondays-1030
 
 on:
   schedule:
@@ -11,7 +11,7 @@ on:
 # FTP_HOST, FTP_USER, FTP_PASS
 
 jobs:
-  lftp-mirror--onMondays-1030:
+  lftp-mirror-upload--onMondays-1030:
     runs-on: ubuntu-latest
     steps:
 
@@ -39,12 +39,3 @@ jobs:
                   ${{ env.PATH_LOCAL }} ${{ env.PATH_REMOTE }};
                 quit"
                 
-      - run: |
-          git config --global user.email "asfalte@bamdadsabbagh.com"
-          git config --global user.name "asfalte"
-
-      - run: |
-          git add .
-          git diff-index --quiet HEAD || git commit -m "chore: asfalte: 🖋 lftp-mirror--onMondays-1030"
-      
-      - run: git push
