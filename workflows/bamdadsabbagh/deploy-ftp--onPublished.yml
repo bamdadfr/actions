@@ -12,9 +12,9 @@ jobs:
 
       - uses: actions/checkout@master
 
-      - uses: bamdadsabbagh/action-deploy-ftp@master
+      - uses: samkirkland/ftp-deploy-action@master
         with:
-          FTP_HOST: ${{ secrets.FTP_HOST }}
-          FTP_USER: ${{ secrets.FTP_USER }}
-          FTP_PASS: ${{ secrets.FTP_PASS }}
-          PATH_LOCAL: 'src'
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          local-dir: './src/'
