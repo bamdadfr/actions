@@ -25,7 +25,7 @@ jobs:
 
       - run: |
           git add .
-          git diff-index --quiet HEAD || git commit -m "fix: asfalte: ⚙️ npm-update--0x130"
+          git diff-index --quiet HEAD || git commit -m "fix(asfalte): ⚙️ npm-update--0x130"
 
       - run: git push
 

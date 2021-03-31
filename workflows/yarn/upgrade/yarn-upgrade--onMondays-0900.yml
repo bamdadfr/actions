@@ -23,7 +23,7 @@ jobs:
 
       - run: |
           git add .
-          git diff-index --quiet HEAD || git commit -m "fix: asfalte: ⚙️ yarn-upgrade--onMondays-0900"
+          git diff-index --quiet HEAD || git commit -m "fix(asfalte): ⚙️ yarn-upgrade--onMondays-0900"
 
       - run: git push
 
