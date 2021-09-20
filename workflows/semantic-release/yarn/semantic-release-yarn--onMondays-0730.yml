@@ -3,10 +3,6 @@ name: semantic-release-yarn--onMondays-0730
 on:
   schedule:
     - cron: '30 7 * * 1' # every monday at 0730
-  repository_dispatch:
-    types:
-      - docker-base-image-check
-      - git-commit-force-release
 
 jobs:
   semantic-release-yarn--onMondays-0730:

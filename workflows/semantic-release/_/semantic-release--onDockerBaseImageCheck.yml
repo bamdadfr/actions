@@ -1,11 +1,12 @@
-name: semantic-release-yarn--onMondays-1030
+name: semantic-release--onDockerBaseImageCheck
 
 on:
-  schedule:
-    - cron: '30 10 * * 1' # every monday at 1030
+  repository_dispatch:
+    types:
+      - docker-base-image-check
 
 jobs:
-  semantic-release-yarn--onMondays-1030:
+  semantic-release--onDockerBaseImageCheck:
     runs-on: ubuntu-latest
     steps:
 
@@ -15,10 +16,8 @@ jobs:
         with:
           node-version: '14'
 
-      - run: npm i --legacy-peer-deps
-
       - run: |
-          npm install -g \
+          npm i -g \
             semantic-release \
             @semantic-release/github \
             @semantic-release/git \
