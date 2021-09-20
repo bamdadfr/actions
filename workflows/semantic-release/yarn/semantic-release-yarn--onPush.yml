@@ -4,10 +4,6 @@ on:
   push:
     branches:
       - master
-  repository_dispatch:
-    types:
-      - docker-base-image-check
-      - git-commit-force-release
 
 jobs:
   semantic-release-yarn--onPush:
